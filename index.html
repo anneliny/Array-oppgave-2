@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handlevogn</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        let itemsInCart = ['Bok', 'Lampe', 'Lenestol', 'Smykker'];
+
+        updateView()
+
+        function updateView(){
+            document.getElementById('app').innerHTML=/*html*/`
+            <h3>Hva vil du handle på bruktbutikken i dag?</h3>
+            <div id="explainText">Skriv inn hva mer du kunne tenke deg å kjøpe og legg det til på lista.</div>
+            <input onchange="newItem(this.value)"/>
+            <button onclick="addToCart()">Legg til handleliste</button>
+            <div id="textBox">${addToCart()}</div>
+            `;
+        }
+
+        function addToCart(){
+        let html = '';
+        for (let i = 0; i < itemsInCart.length; i++){
+        html += /*HTML*/ ` <li onclick= "('${i}')">${itemsInCart[i]}</li>
+            `;
+        }
+        return html;
+        updateView()
+        }
+
+        function newItem(item){
+            itemsInCart.push(item)
+            updateView()
+        }
+    </script>
+    <style>
+        body {
+            background-color: rgb(105, 126, 72);
+        }
+        h3 {
+            font-family: monospace;
+            font-size: x-large;
+        }
+        #explainText{
+            margin: 20px;
+        }
+
+    input{
+        margin: 20px;
+        outline-color: black;
+    }
+    button  {
+        border-radius: 5px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: small;
+        font-weight: bolder;
+        background-color: rgb(192, 198, 134);
+        
+    }
+    #textBox {
+        margin: 20px;
+        padding: 10px;
+        border: double 5px;
+        background-color: antiquewhite;
+        height: 400px;
+
+    }
+    #app {
+        display: grid;
+        justify-content: center;
+    }
+
+
+    </style>
+</body>
+</html>
